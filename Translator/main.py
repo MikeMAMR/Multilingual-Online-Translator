@@ -2,25 +2,34 @@ import requests
 from bs4 import BeautifulSoup
 
 list = ['Arabic','German','English','Spanish','French','Hebrew','Japanese','Dutch','Polish','Portuguese','Romanian','Russian','Turkish']
+print("""Hello, you're welcome to the translator. Translator supports: 
+1. Arabic
+2. German
+3. English
+4. Spanish
+5. French
+6. Hebrew
+7. Japanese
+8. Dutch
+9. Polish
+10. Portuguese
+11. Romanian
+12. Russian
+13. Turkish""")
 
-print(
-    'Type "en" if you want to translate from French into English, or "fr" if you want to translate from English into French:')
-tipo = input('> ')
+print('Type the number of your language:')
+yourLeng = int(input('> '))
+print('Type the number of language you want to translate to: ')
+lenguaje = int(input('> '))
 print('Type the word you want to translate:')
-lenguaje = input('> ')
-print('You chose "' + tipo + '" as the language to translate "' + lenguaje + '" to.')
+tipo = input('> ')
+
 user_agent = 'Mozilla/5.0'
 
-Lang = ""
+Lang = list[lenguaje - 1]
 
-url = 'https://context.reverso.net/translation/'
-if tipo == 'fr':
-    url = url + 'english-french/' + lenguaje
-    Lang = "French"
-else:
-    url = url + 'french-english/' + lenguaje
-    Lang = "English"
-
+url = 'https://context.reverso.net/translation/' + list[yourLeng - 1].lower() + '-' + list[lenguaje - 1].lower() + '/'+tipo
+#print(url)
 response = requests.get(url, headers={'User-Agent': user_agent})
 s = BeautifulSoup(response.content, 'html.parser')
 
