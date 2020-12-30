@@ -1,7 +1,68 @@
 import requests
 from bs4 import BeautifulSoup
 
-list = ['Arabic','German','English','Spanish','French','Hebrew','Japanese','Dutch','Polish','Portuguese','Romanian','Russian','Turkish']
+list = ['Arabic', 'German', 'English', 'Spanish', 'French', 'Hebrew', 'Japanese', 'Dutch', 'Polish', 'Portuguese',
+        'Romanian', 'Russian', 'Turkish']
+
+
+def juntar(cad, agregar):
+    return cad + agregar
+
+r = requests.session()
+
+def translate(myLan, otherLan, word, id):
+    texto = ""
+    user_agent = 'Mozilla/5.0'
+    url = 'https://context.reverso.net/translation/' + list[myLan - 1].lower() + '-' + list[
+        otherLan - 1].lower() + '/' + word
+    response = r.get(url, headers={'User-Agent': user_agent})
+    s = BeautifulSoup(response.content, 'html.parser')
+    if s:
+        if id == 0:
+            texto = juntar(texto, str(response.status_code) + ' OK\n')  # print(response.status_code, 'OK')
+            texto = juntar(texto, '\nContext examples:\n\n')  # print('\nContext examples:\n')
+        A_transactions = s.find_all("a", {"class": "translation"})
+        if otherLan == 1:
+            A_examples = s.find_all("div", {"class": "trg rtl arabic"})
+        elif otherLan == 6:
+            A_examples = s.find_all("div", {"class": "trg rtl"})
+        else:
+            A_examples = s.find_all("div", {"class": "trg ltr"})
+
+        A_examplesOther = s.find_all("div", {"class": "src ltr"})
+        words = []
+        examples = []
+        Other = []
+        texto = juntar(texto, list[otherLan - 1] + ' Translations:\n')  # print(Lang, 'Translations:')
+        for tmp in A_transactions:
+            words.append(tmp.text.strip())
+        for tmp in A_examples:
+            examples.append(tmp.text.strip())
+        for tmp in A_examplesOther:
+            Other.append(tmp.text.strip())
+        # IMPRIMIR PALABRAS
+        if id == 1:
+            words = words[1:2]
+        else:
+            words = words[1:6]
+
+        for tmp in words:
+            texto = juntar(texto, tmp + '\n')  # print(tmp)
+        texto = juntar(texto, '\n')  # print()
+        idx = 0
+        texto = juntar(texto, list[otherLan - 1] + ' Examples:\n')  # print(Lang, 'Examples:')
+        for tmp in examples:
+            if id == 1 and idx == 1:
+                break
+            texto = juntar(texto, Other[idx] + ":\n")  # print(Other[idx] + ":")
+            texto = juntar(texto, tmp + '\n')  # print(tmp)
+            texto = juntar(texto, '\n')  # print()
+            idx += 1
+    else:
+        texto = 'No'  # print('No')
+    return texto
+
+
 print("""Hello, you're welcome to the translator. Translator supports: 
 1. Arabic
 2. German
@@ -23,49 +84,21 @@ print('Type the number of language you want to translate to: ')
 lenguaje = int(input('> '))
 print('Type the word you want to translate:')
 tipo = input('> ')
-
-user_agent = 'Mozilla/5.0'
-
 Lang = list[lenguaje - 1]
 
-url = 'https://context.reverso.net/translation/' + list[yourLeng - 1].lower() + '-' + list[lenguaje - 1].lower() + '/'+tipo
-#print(url)
-response = requests.get(url, headers={'User-Agent': user_agent})
-s = BeautifulSoup(response.content, 'html.parser')
+file2 = open(f'{tipo}.txt', 'w', encoding='utf-8')
 
-if s:
-    print(response.status_code, 'OK')
-    print('\nContext examples:\n')
-
-    A_transactions = s.find_all("a", {"class": "translation"})
-    A_examples = s.find_all("div", {"class": "trg ltr"})
-    A_examplesOther = s.find_all("div", {"class": "src ltr"})
-
-    words = []
-    examples = []
-    Other = []
-
-    print(Lang, 'Translations:')
-
-    for tmp in A_transactions:
-        words.append(tmp.text.strip())
-    for tmp in A_examples:
-        examples.append(tmp.text.strip())
-    for tmp in A_examplesOther:
-        Other.append(tmp.text.strip())
-    words = words[1:6]
-    #examples = examples[:5]
-    #Other = Other[:5]
-    for tmp in words:
-        print(tmp)
-    print()
-    idx = 0
-    print(Lang, 'Examples:')
-    for tmp in examples:
-        print(Other[idx] + ":")
-        print(tmp)
-        print()
-        idx += 1
-
+if lenguaje == 0:
+    tmp = ""
+    for idm in list:
+        if idm != list[yourLeng - 1]:
+            # print(list.index(idm))
+            tmp = tmp + translate(yourLeng, list.index(idm) + 1, tipo, 1) + '\n'
+    print(tmp)
+    file2.write(tmp)
 else:
-    print('No')
+    tmp = translate(yourLeng, lenguaje, tipo, 0)
+    print(tmp)
+    file2.write(tmp)
+
+file2.close()
