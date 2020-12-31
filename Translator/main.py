@@ -1,9 +1,9 @@
+import sys
 import requests
 from bs4 import BeautifulSoup
 
 list = ['Arabic', 'German', 'English', 'Spanish', 'French', 'Hebrew', 'Japanese', 'Dutch', 'Polish', 'Portuguese',
         'Romanian', 'Russian', 'Turkish']
-
 
 def juntar(cad, agregar):
     return cad + agregar
@@ -18,9 +18,9 @@ def translate(myLan, otherLan, word, id):
     response = r.get(url, headers={'User-Agent': user_agent})
     s = BeautifulSoup(response.content, 'html.parser')
     if s:
-        if id == 0:
-            texto = juntar(texto, str(response.status_code) + ' OK\n')  # print(response.status_code, 'OK')
-            texto = juntar(texto, '\nContext examples:\n\n')  # print('\nContext examples:\n')
+        #if id == 0:
+        #    texto = juntar(texto, str(response.status_code) + ' OK\n')  # print(response.status_code, 'OK')
+        #    texto = juntar(texto, '\nContext examples:\n\n')  # print('\nContext examples:\n')
         A_transactions = s.find_all("a", {"class": "translation"})
         if otherLan == 1:
             A_examples = s.find_all("div", {"class": "trg rtl arabic"})
@@ -63,7 +63,7 @@ def translate(myLan, otherLan, word, id):
     return texto
 
 
-print("""Hello, you're welcome to the translator. Translator supports: 
+"""print(Hello, you're welcome to the translator. Translator supports: 
 1. Arabic
 2. German
 3. English
@@ -76,14 +76,18 @@ print("""Hello, you're welcome to the translator. Translator supports:
 10. Portuguese
 11. Romanian
 12. Russian
-13. Turkish""")
+13. Turkish)"""
 
-print('Type the number of your language:')
-yourLeng = int(input('> '))
-print('Type the number of language you want to translate to: ')
-lenguaje = int(input('> '))
-print('Type the word you want to translate:')
-tipo = input('> ')
+args = sys.argv
+
+#print('Type the number of your language:')
+yourLeng = list.index(args[1].capitalize()) + 1 #int(input('> '))
+#print('Type the number of language you want to translate to: ')
+lenguaje = 0
+if args[2] != 'all':
+    lenguaje =  list.index(args[2].capitalize()) + 1 #int(input('> '))
+#print('Type the word you want to translate:')
+tipo =  args[3]  #input('> ')
 Lang = list[lenguaje - 1]
 
 file2 = open(f'{tipo}.txt', 'w', encoding='utf-8')
