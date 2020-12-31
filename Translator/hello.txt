@@ -1,96 +1,68 @@
-Arabic Translations:
-مرحبا
-
-Arabic Examples:
-Well, hello, old-school racist.:
-حسنا، مرحبا يا تلميذة المدرسة العنصريّة - الأمر يسري بدمهم!
-
-
-German Translations:
-hallo
-
-German Examples:
-Finally got a personalized hello from Earl.:
-Ich habe endlich ein personifiziertes hallo von Earl bekommen.
-
-
 Spanish Translations:
 hola
+buenos días
+qué tal
+saludo
+buen día
 
 Spanish Examples:
 Well, hello, Miss Anchor-liar.:
 Bien, hola, señorita presentadora de mentiras.
 
+I guess it's impossible to forget her. Yes, hello.:
+Imagino que es imposible olvidarla... hola.
 
-French Translations:
-bonjour
+Yes, hello, Mr Teodoresco.:
+Sí, buenos días, Sr. Teodoresco.
 
-French Examples:
-Say goodbye to anti-aliasing and hello to naturally crisp graphics.:
-Dites adieu à l'anti-crénelage et bonjour à des graphismes naturellement nets.
+Dr. Juarez, hello again.:
+Doctora Juárez, hola de nuevo.
 
+And all I could say was hello.:
+Y todo lo que supe decir fue hola.
 
-Hebrew Translations:
-שלום
+All I could say was hello.:
+Todo lo que supe decir fue hola.
 
-Hebrew Examples:
-How come they never say hello?:
-איך זה שהן אף פעם לא אומרות שלום.
+Well, hello, San Antonio Memorial night shift.:
+Bueno, hola, San Antonio turno de noche Memorial.
 
+It's like, hello, random.:
+Es como, hola, al azar.
 
-Japanese Translations:
-こんにちは
+The baby-sitter's here! - hello kids.:
+La niñera está aquí - Hola chicos.
 
-Japanese Examples:
-The little boy said hello to me.:
-小さな男の子が私にこんにちはと言った。
+And hello, gorgeous but deadly.:
+Y hola, hermosa pero letal.
 
+Well, hello there, young employee of the Sidewinder.:
+Hola, joven empleado del Sidewinder.
 
-Dutch Translations:
-dag
+Well, hello, I've been calling you for days.:
+Bueno, hola, he estado llamando durante días.
 
-Dutch Examples:
-Which in Hawaiian means hello and goodbye.:
-Dat betekent hallo en tot ziens in het Hawaiiaans.
+I knocked and you said "hello".:
+He llamado y usted ha dicho "hola".
 
+He didn't introduce us, so hello.:
+No nos presentó, así que hola.
 
-Polish Translations:
-cześć
+So... hello from the other side.:
+Así que... hola desde el otro lado.
 
-Polish Examples:
+Joanne hello, you've reached the Mulcahey... Residence.:
+Hola, se ha comunicado con la residencia de los Mulcaoye.
+
+Salve means "hello" in Latin.:
+"Salve" significa "hola" en latín.
+
+Well, hello, my little rose petal.:
+Hola, mi pequeño pétalo de rosa.
+
 You had me at "hello".:
-Wystarczyło mi twoje "cześć".
+Cuando dijiste "hola" ya me habías convencido.
 
-
-Portuguese Translations:
-olá
-
-Portuguese Examples:
-That was my last kiss hello.:
-Pois eu garanto que aquele foi o meu último beijo de olá.
-
-
-Romanian Translations:
-salut
-
-Romanian Examples:
-I came by to say hello.:
-Am avut o pauză de masă și am trecut să te salut.
-
-
-Russian Translations:
-привет
-
-Russian Examples:
-Tell her slipping' Jimmy says hello.:
-Передай ей, что Скользкий Джимми передает ей привет.
-
-
-Turkish Translations:
-selam
-
-Turkish Examples:
-Say "hello" from Tito Spadola.:
-Tito Spadola'dan, "selam" söyleyeceğim.
-
+So, say sayonara to the car and hello, ridiculous insurance premium.:
+Así que, adiós al coche y hola, ridículo seguro Premium.
 

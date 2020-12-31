@@ -9,7 +9,7 @@ def juntar(cad, agregar):
     return cad + agregar
 
 r = requests.session()
-
+band = 0
 def translate(myLan, otherLan, word, id):
     texto = ""
     user_agent = 'Mozilla/5.0'
@@ -40,6 +40,8 @@ def translate(myLan, otherLan, word, id):
             examples.append(tmp.text.strip())
         for tmp in A_examplesOther:
             Other.append(tmp.text.strip())
+        if len(words) == 1:
+            return '-1'
         # IMPRIMIR PALABRAS
         if id == 1:
             words = words[1:2]
@@ -59,7 +61,7 @@ def translate(myLan, otherLan, word, id):
             texto = juntar(texto, '\n')  # print()
             idx += 1
     else:
-        texto = 'No'  # print('No')
+        texto = 'Something wrong with your internet connection'  # print('No')
     return texto
 
 
@@ -79,30 +81,30 @@ def translate(myLan, otherLan, word, id):
 13. Turkish)"""
 
 args = sys.argv
-
-#print('Type the number of your language:')
-yourLeng = list.index(args[1].capitalize()) + 1 #int(input('> '))
-#print('Type the number of language you want to translate to: ')
-lenguaje = 0
-if args[2] != 'all':
-    lenguaje =  list.index(args[2].capitalize()) + 1 #int(input('> '))
-#print('Type the word you want to translate:')
-tipo =  args[3]  #input('> ')
-Lang = list[lenguaje - 1]
-
-file2 = open(f'{tipo}.txt', 'w', encoding='utf-8')
-
-if lenguaje == 0:
+try: 
+    #print('Type the number of your language:')
+    yourLeng = list.index(args[1].capitalize()) + 1 #int(input('> '))
+    #print('Type the number of language you want to translate to: ')
+    lenguaje = 0
+    if args[2] != 'all':
+        lenguaje =  list.index(args[2].capitalize()) + 1 #int(input('> '))
+    #print('Type the word you want to translate:')
+    tipo =  args[3]  #input('> ')
+    Lang = list[lenguaje - 1]
+    file2 = open(f'{tipo}.txt', 'w', encoding='utf-8')
     tmp = ""
-    for idm in list:
-        if idm != list[yourLeng - 1]:
-            # print(list.index(idm))
-            tmp = tmp + translate(yourLeng, list.index(idm) + 1, tipo, 1) + '\n'
-    print(tmp)
+    if lenguaje == 0:
+        for idm in list:
+            if idm != list[yourLeng - 1]:
+                # print(list.index(idm))
+                tmp = tmp + translate(yourLeng, list.index(idm) + 1, tipo, 1) + '\n'
+    else:
+        tmp = translate(yourLeng, lenguaje, tipo, 0)
+    if tmp[0] == '-':
+        print(f'Sorry, unable to find {args[3]}')
+    else:
+        print(tmp)
     file2.write(tmp)
-else:
-    tmp = translate(yourLeng, lenguaje, tipo, 0)
-    print(tmp)
-    file2.write(tmp)
-
-file2.close()
+    file2.close()
+except ValueError:
+    print("Sorry, the program doesn't support " + args[2])
